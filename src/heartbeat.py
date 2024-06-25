@@ -1,5 +1,5 @@
-import requests, json, os
-from dotenv import load_dotenv
+import pysteve.pySteve
+import requests, json, os, pysteve
 from datetime import datetime
 from pathlib import Path
 from spaceandtime import SpaceAndTime
@@ -11,10 +11,10 @@ sxt = SpaceAndTime(envfile_filepath="./src/.env")
 sxt.logger_addFileHandler(Path(f'./src/logs/heartbeat_{datetime.utcnow().strftime(timestamp_format)}.log'))
 
 # load in dotenv file 
-load_dotenv('./src/.env')
-zapier_webhook = os.getenv('ZAPIER_WEBHOOK_NOTIFY_NETWORK_STATE_CHANGE')
+envars = pysteve.pySteve.envfile_load('./src/.env')
+zapier_webhook = envars['ZAPIER_WEBHOOK_NOTIFY_NETWORK_STATE_CHANGE']
 sxtlabs_dml_biscuit = os.getenv('SXTLABS_DML_BISCUIT')
-test=str(os.getenv('TEST_ONLY')).strip().lower() in ['true','yes']
+test=str(envars['TEST_ONLY']).strip().lower() in ['true','yes']
 sxt.logger.info(f"config settings: \nzapier webhook: {zapier_webhook} \ndml_biscuit: {sxtlabs_dml_biscuit[:6]}...{sxtlabs_dml_biscuit[-6:]} \ntest_only: {test}\n")
 
 
