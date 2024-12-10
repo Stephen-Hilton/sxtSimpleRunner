@@ -8,6 +8,7 @@ timestamp_format = '%Y-%m-%dT%H:%M:%S+00:00'
 
 # add sxt early, for logging
 sxt = SpaceAndTime(envfile_filepath="./src/.env")
+sxt.user.api_url = 'https://api.spaceandtime.dev'
 sxt.logger_addFileHandler(Path(f'./src/logs/heartbeat_{datetime.utcnow().strftime(timestamp_format)}.log'))
 
 # load in dotenv file 
