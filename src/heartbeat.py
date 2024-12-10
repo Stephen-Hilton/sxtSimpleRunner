@@ -63,6 +63,7 @@ retry_count = 3
 
 for i in range(retry_count):
 
+    sxt.user.api_url = 'https://api.spaceandtime.dev'
     sxt.authenticate()
     success, data = sxt.execute_query("""    SELECT 'OK' as STATUS
         , 'Space and Time Network is UP and accessible!' as MESSAGE
